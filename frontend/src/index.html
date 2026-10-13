@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario de Laboratorio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <div>
+                <h1>Inventario de Laboratorio - Equipos</h1>
+                <p class="subtitle">Dominio 6 - Entidad: Equipo</p>
+            </div>
+            <div class="telemetry-bar">
+                <div class="stat-box">
+                    <span>Servicios:</span>
+                    <strong id="health-text">Verificando...</strong>
+                </div>
+                <div class="stat-box">
+                    <span>Origen:</span>
+                    <strong id="cache-source-badge">-</strong>
+                </div>
+                <div class="stat-box">
+                    <span>TTL Cache:</span>
+                    <strong id="cache-ttl-value">0s</strong>
+                </div>
+                <div class="stat-box">
+                    <span>Consultas Redis:</span>
+                    <strong id="counter-value">0</strong>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container main-grid">
+        <div id="alert-box" class="alert hidden" role="alert"></div>
+
+        <section class="panel">
+            <h2 id="form-title">Registrar Equipo</h2>
+
+            <form id="equipo-form">
+                <input type="hidden" id="equipo-id" value="">
+
+                <div class="form-group">
+                    <label for="nombre">Nombre del Equipo:</label>
+                    <input type="text" id="nombre" required placeholder="Ej. Espectrofotometro UV-Vis">
+                </div>
+
+                <div class="form-group">
+                    <label for="marca">Marca:</label>
+                    <input type="text" id="marca" required placeholder="Ej. Agilent">
+                </div>
+
+                <div class="form-group">
+                    <label for="numero_serie">Numero de Serie:</label>
+                    <input type="text" id="numero_serie" required placeholder="Ej. AGI-UV-015">
+                </div>
+
+                <div class="form-group">
+                    <label for="ubicacion">Ubicacion:</label>
+                    <input type="text" id="ubicacion" placeholder="Ej. Laboratorio A1">
+                </div>
+
+                <div class="form-group">
+                    <label for="estado">Estado:</label>
+                    <select id="estado" required>
+                        <option value="Disponible">Disponible</option>
+                        <option value="En uso">En uso</option>
+                        <option value="En mantenimiento">En mantenimiento</option>
+                        <option value="Fuera de servicio">Fuera de servicio</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" id="submit-btn">Guardar</button>
+                    <button type="button" class="btn btn-secondary hidden" id="cancel-edit-btn">Cancelar</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="panel">
+            <div class="table-header">
+                <h2>Lista de Equipos (<span id="total-count">0</span>)</h2>
+                <div class="table-actions">
+                    <input type="text" id="search-input" class="search-box" placeholder="Buscar equipo o marca...">
+                    <button type="button" class="btn" id="search-btn">Buscar</button>
+                    <button type="button" class="btn" id="refresh-btn">Actualizar Lista</button>
+                    <button type="button" class="btn" id="export-btn">Exportar JSON</button>
+                    <button type="button" class="btn" id="check-health-btn">Verificar Estado</button>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Marca</th>
+                            <th>Numero de Serie</th>
+                            <th>Ubicacion</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="equipos-tbody">
+                        <tr>
+                            <td colspan="7" class="empty-row">Cargando datos...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

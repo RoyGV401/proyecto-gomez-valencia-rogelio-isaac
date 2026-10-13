@@ -1,0 +1,12 @@
+# Variables de entorno locales (contienen secretos/contraseñas reales)
+.env
+.env.local
+.env.*.local
+
+# Archivos del sistema operativo y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.log
